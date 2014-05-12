@@ -1,0 +1,7 @@
+c:\Users\Dave\Documents\Visual Studio 2010\Projects\Dnd 4e Character Assistant\Dnd 4e Character Assistant\bin\Debug\Dnd 4e Character Assistant.exe
+c:\Users\Dave\Documents\Visual Studio 2010\Projects\Dnd 4e Character Assistant\Dnd 4e Character Assistant\bin\Debug\Dnd 4e Character Assistant.pdb
+c:\Users\Dave\Documents\Visual Studio 2010\Projects\Dnd 4e Character Assistant\Dnd 4e Character Assistant\obj\x86\Debug\Dnd_4e_Character_Assistant.Form1.resources
+c:\Users\Dave\Documents\Visual Studio 2010\Projects\Dnd 4e Character Assistant\Dnd 4e Character Assistant\obj\x86\Debug\Dnd_4e_Character_Assistant.Properties.Resources.resources
+c:\Users\Dave\Documents\Visual Studio 2010\Projects\Dnd 4e Character Assistant\Dnd 4e Character Assistant\obj\x86\Debug\Dnd 4e Character Assistant.csproj.GenerateResource.Cache
+c:\Users\Dave\Documents\Visual Studio 2010\Projects\Dnd 4e Character Assistant\Dnd 4e Character Assistant\obj\x86\Debug\Dnd 4e Character Assistant.exe
+c:\Users\Dave\Documents\Visual Studio 2010\Projects\Dnd 4e Character Assistant\Dnd 4e Character Assistant\obj\x86\Debug\Dnd 4e Character Assistant.pdb
