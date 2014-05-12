@@ -37,9 +37,12 @@ namespace Dnd_4e_Character_Assistant
             InitializeComponent();
         }
 
+
+		private string DropBoxLocation = MonoSupport.IsMono?@"/home/dave/Dropbox/CharacterAssistant/":@"C:\Users\Dave\Dropbox\CharacterAssistant\";
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            ICharacterPersistance persist = new CharacterFile(@"C:\Users\Dave\Dropbox\CharacterAssistant\myCleric.txt");
+            ICharacterPersistance persist = new CharacterFile(DropBoxLocation+"myCleric.txt");
             Character c = new Character(persist);
 
             c.Health.CurrentHP -= 5;
