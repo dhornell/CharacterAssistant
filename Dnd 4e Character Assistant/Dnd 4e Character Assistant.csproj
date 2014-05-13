@@ -80,6 +80,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="MonoSupport.cs" />
+    <Compile Include="Classes\Hybrid.cs" />
+    <Compile Include="Classes\Hybrids\HybridMonk.cs" />
+    <Compile Include="Classes\Hybrids\HybridClass.cs" />
+    <Compile Include="Classes\Hybrids\HybridFighter.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -90,4 +94,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Classes\Hybrids\" />
+  </ItemGroup>
 </Project>

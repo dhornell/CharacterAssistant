@@ -7,6 +7,9 @@ using System.Reflection;
 
 namespace Dnd_4e_Character_Assistant
 {
+	public enum SaveBonusType{Fortitude,Reflex,Will,None};
+
+
     public class CharacterClass
     {
         #region static Collection
@@ -15,6 +18,7 @@ namespace Dnd_4e_Character_Assistant
         #endregion
 
         public static CharacterClass FromClassName(string className) {
+
             return (CharacterClass)Activator.CreateInstance(Type.GetType(string.Format("Dnd_4e_Character_Assistant.Classes.{0}",className)));
         }
         public string ClassName { get {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Dnd_4e_Character_Assistant.Persistance;
+using Dnd_4e_Character_Assistant.Classes;
 
 namespace Dnd_4e_Character_Assistant
 {
@@ -109,9 +110,14 @@ namespace Dnd_4e_Character_Assistant
             LoadHealth();
         }
 
-        private CharacterClass LoadClass()
-        {
-            string classString = _persistance.Get("Class");
+        private CharacterClass LoadClass ()
+		{
+			string classString = _persistance.Get ("Class");
+
+			if (classString == "Hybrid") {
+				return Hybrid.Load(ref _persistance);
+			}
+
             return CharacterClass.FromClassName(classString);
         }
 
