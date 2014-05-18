@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Dnd_4e_Character_Assistant.Persistance;
 using Dnd_4e_Character_Assistant.Classes;
+using Dnd_4e_Character_Assistant.Feats;
 
 namespace Dnd_4e_Character_Assistant
 {
@@ -67,13 +68,14 @@ namespace Dnd_4e_Character_Assistant
 
     public class Character
     {
-        private ICharacterPersistance _persistance;
+        private IPersistance _persistance;
+		private FeatFile _featFile;
 
 
-
-        public Character(ICharacterPersistance persistance)
+        public Character(IPersistance persistance, FeatFile feats)
         {
             _persistance = persistance;
+			_featFile = feats;
             Load();
         }
         
@@ -83,6 +85,8 @@ namespace Dnd_4e_Character_Assistant
         public CharacterClass Class { get; private set; }
         public Health Health { get; private set; }
         public CharacterRace Race { get; private set; }
+
+		public List<Feat> Feats{ get; private set; }
 
         private void CalculateHealth() {
          int maxHp = Class.HpAtFirstLevel;
@@ -108,6 +112,7 @@ namespace Dnd_4e_Character_Assistant
             LoadAbilities();
             LoadLevel();
             LoadHealth();
+			LoadFeats();
         }
 
         private CharacterClass LoadClass ()
@@ -152,6 +157,17 @@ namespace Dnd_4e_Character_Assistant
             //Determine our calculated values
             CalculateHealth();
         }
+
+		private void LoadFeats ()
+		{
+			string featList = _persistance.Get ("Feats");
+			string[] featNames = featList.Split (',');
+			Feats = new List<Feat> ();
+			foreach (string name in featNames) {
+				Feats.Add(Feat.Load(_featFile,name));
+			}
+		}
+
         #endregion
 
         #region SaveFunctions
@@ -161,6 +177,7 @@ namespace Dnd_4e_Character_Assistant
             SaveAbilities();
             SaveLevel();
             SaveHealth();
+			SaveFeats();
         }
 
         private void SaveHealth()
@@ -191,8 +208,19 @@ namespace Dnd_4e_Character_Assistant
         private void SaveClass()
         {
             _persistance.Set("Class", Class.ClassName);
-            
         }
+
+		private void SaveFeats ()
+		{
+			string featString = "";
+			foreach (Feat f in Feats) {
+				featString += string.Format (",{0}", f.Name);
+			}
+			if (featString.Length > 0) {
+				featString = featString.Substring(1); //Remove leading ','
+			}
+			_persistance.Set("Feats",featString);
+		}
         #endregion
 
         #endregion

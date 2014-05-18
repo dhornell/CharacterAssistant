@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Dnd_4e_Character_Assistant.Feats;
 
 namespace Dnd_4e_Character_Assistant
 {
@@ -11,6 +12,8 @@ namespace Dnd_4e_Character_Assistant
         public Defense(ref Character c) { Character = c; }
         public int Value { get { return (10 +Mod); } }
         public abstract int Mod { get; }
+		public abstract int FeatBonus{get;}
+		//public abstract int EnchantmentBonus{get;}
     }
 
     class ArmorClassDefense : Defense {
@@ -22,7 +25,7 @@ namespace Dnd_4e_Character_Assistant
                 int armorBonus = 0/*Character.Armor*/;
                 int dexBonus = Character.Abilities.Dexterity.Mod;
                 int classBonus = Character.Class.ArmorClassBonus;
-                int featBonus = 0/*Character.Feats*//*Itterate through them*/;
+                int featBonus = FeatBonus/*Character.Feats*//*Itterate through them*/;
                 int enchantBonus = 0/*Character.Enchantments*//*Itter through them*/;
                 int racialBonus = Character.Race.ArmorClassBonus;
                 int misc = 0/*???*/;
@@ -30,6 +33,17 @@ namespace Dnd_4e_Character_Assistant
                 return halfLevel + (/*hasArmor*/false ? armorBonus : dexBonus) + classBonus + featBonus + enchantBonus + racialBonus + misc;
             }
         }
+
+		public override int FeatBonus {
+			get {
+				int bonus = 0;
+				foreach(Feat f in Character.Feats){
+					bonus+=f.ArmorClassBonus;
+				}
+				return bonus;
+			}
+		}
+
     }
 
     class FortitudeDefense : Defense {
@@ -40,7 +54,7 @@ namespace Dnd_4e_Character_Assistant
                 int halfLevel = Character.Level.Half;
                 int abilBonus = Math.Max(Character.Abilities.Strength.Mod, Character.Abilities.Constitution.Mod);
                 int classBonus = Character.Class.FortitudeBonus;
-                int featBonus = 0/*Character.Feats*//*Itterate through them*/;
+                int featBonus = FeatBonus/*Character.Feats*//*Itterate through them*/;
                 int enchantBonus = 0/*Character.Enchantments*//*Itter through them*/;
                 int racialBonus = Character.Race.FortitudeBonus;
                 int misc = 0/*???*/;
@@ -49,6 +63,16 @@ namespace Dnd_4e_Character_Assistant
             
             }
         }
+
+		public override int FeatBonus {
+			get {
+				int bonus = 0;
+				foreach(Feat f in Character.Feats){
+					bonus+=f.FortitudeBonus;
+				}
+				return bonus;
+			}
+		}
     }
 
     class ReflexDefense : Defense
@@ -60,7 +84,7 @@ namespace Dnd_4e_Character_Assistant
                 int halfLevel = Character.Level.Half;
                 int abilBonus = Math.Max(Character.Abilities.Dexterity.Mod, Character.Abilities.Inteligence.Mod);
                 int classBonus = Character.Class.ReflexBonus;
-                int featBonus = 0/*Character.Feats*//*Itterate through them*/;
+                int featBonus = FeatBonus/*Character.Feats*//*Itterate through them*/;
                 int enchantBonus = 0/*Character.Enchantments*//*Itter through them*/;
                 int racialBonus = Character.Race.ReflexBonus;
                 int misc = 0/*???*/;
@@ -68,6 +92,16 @@ namespace Dnd_4e_Character_Assistant
                 return halfLevel + abilBonus + classBonus + featBonus + enchantBonus + racialBonus + misc;
             }
         }
+
+		public override int FeatBonus {
+			get {
+				int bonus = 0;
+				foreach(Feat f in Character.Feats){
+					bonus+=f.ReflexBonus;
+				}
+				return bonus;
+			}
+		}
     }
 
     class WillDefense : Defense
@@ -79,7 +113,7 @@ namespace Dnd_4e_Character_Assistant
                 int halfLevel = Character.Level.Half;
                 int abilBonus = Math.Max(Character.Abilities.Wisdom.Mod, Character.Abilities.Charisma.Mod);
                 int classBonus = Character.Class.WillBonus;
-                int featBonus = 0/*Character.Feats*//*Itterate through them*/;
+                int featBonus = FeatBonus/*Character.Feats*//*Itterate through them*/;
                 int enchantBonus = 0/*Character.Enchantments*//*Itter through them*/;
                 int racialBonus = Character.Race.WillBonus;
                 int misc = 0/*???*/;
@@ -87,6 +121,16 @@ namespace Dnd_4e_Character_Assistant
                 return halfLevel + abilBonus + classBonus + featBonus + enchantBonus +racialBonus + misc;
             }
         }
+
+		public override int FeatBonus {
+			get {
+				int bonus = 0;
+				foreach(Feat f in Character.Feats){
+					bonus+=f.WillBonus;
+				}
+				return bonus;
+			}
+		}
     }
 
     class DefenseCollection{

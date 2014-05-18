@@ -50,14 +50,13 @@ namespace Dnd_4e_Character_Assistant
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //ICharacterPersistance persist = new CharacterFile(DropBoxLocation+"myCleric.txt");
-            //Character c = new Character(persist);
-			//DisplayCharacter (ref c);
+			string file = "myCleric.txt";
+			//string file = "Zaine.txt";
 
-
-			ICharacterPersistance persist2 = new CharacterFile(DropBoxLocation+"Zaine.txt");
-            Character c2 = new Character(persist2);
-			DisplayCharacter (ref c2);
+            IPersistance persist = new CharacterFile(DropBoxLocation+file);
+			FeatFile featFile = new FeatFile(DropBoxLocation+"feats.txt");
+          Character c = new Character(persist,featFile);
+			DisplayCharacter (ref c);
 
 
         }

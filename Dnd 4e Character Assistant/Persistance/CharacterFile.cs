@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Dnd_4e_Character_Assistant.Persistance
 {
-    public class CharacterFile :ICharacterPersistance
+    public class CharacterFile :IPersistance
     {
         const string CommentSymbol = "#";
 

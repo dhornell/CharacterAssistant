@@ -6,7 +6,7 @@ namespace Dnd_4e_Character_Assistant.Classes
 {
 	public class Hybrid : CharacterClass
 	{
-		public static Hybrid Load(ref ICharacterPersistance persistance){
+		public static Hybrid Load(ref IPersistance persistance){
 		
 			string classAName = persistance.Get("ClassA");
 			string classBName = persistance.Get("ClassB");
