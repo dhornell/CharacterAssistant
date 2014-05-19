@@ -72,6 +72,16 @@ namespace Dnd_4e_Character_Assistant
 		private FeatFile _featFile;
 
 
+        public Character(FeatFile feats) {
+            _featFile = feats;
+            /*Use this only for building a new character*/
+            Abilities = new AbilityCollection();
+            Level = new Level();
+            Health = new Health();
+            Feats = new List<Feat>();
+
+        }
+
         public Character(IPersistance persistance, FeatFile feats)
         {
             _persistance = persistance;
@@ -87,6 +97,19 @@ namespace Dnd_4e_Character_Assistant
         public CharacterRace Race { get; private set; }
 
 		public List<Feat> Feats{ get; private set; }
+
+        #region Edit Only
+        public void SetClass(CharacterClass cc) {
+            Class = cc;
+        }
+        public void SetRace(CharacterRace cr)
+        {
+            Race = cr;
+        }
+        #endregion
+
+
+
 
         private void CalculateHealth() {
          int maxHp = Class.HpAtFirstLevel;

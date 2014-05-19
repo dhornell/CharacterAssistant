@@ -138,13 +138,13 @@ namespace Dnd_4e_Character_Assistant
             ArmorClass = new ArmorClassDefense(ref c);
             Fortitude = new FortitudeDefense(ref c);
             Reflex = new ReflexDefense(ref c);
-            Wisdom = new WillDefense(ref c);
+            Will = new WillDefense(ref c);
         }
 
         public Defense ArmorClass { get; set; }
         public Defense Fortitude { get; set; }
         public Defense Reflex { get; set; }
-        public Defense Wisdom { get; set; }
+        public Defense Will { get; set; }
 
     }
     #endregion

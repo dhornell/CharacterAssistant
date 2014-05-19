@@ -14,6 +14,10 @@ namespace Dnd_4e_Character_Assistant.Persistance
         public CharacterFile(string file) {
             _fileName = file;
         }
+        public void ChangeFileName(string newName) {
+            _fileName = newName;
+            SaveFile();
+        }
 
         private Dictionary<string, string> _fileKV = null;
         private Dictionary<string, string> FileKV { get {
@@ -39,14 +43,19 @@ namespace Dnd_4e_Character_Assistant.Persistance
         private void LoadFile()
         {
             Dictionary<string, string> kv = new Dictionary<string, string>();
-            using (StreamReader sr = new StreamReader(_fileName)) {
-                while (!sr.EndOfStream) {
-                    string line = sr.ReadLine();
+            if (File.Exists(_fileName))
+            {
+                using (StreamReader sr = new StreamReader(_fileName))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string line = sr.ReadLine();
 
-                    if (line.StartsWith(CommentSymbol)) { continue; }
+                        if (line.StartsWith(CommentSymbol)) { continue; }
 
-                    string[] p = line.Split('=');
-                    kv[p[0]] = p[1];
+                        string[] p = line.Split('=');
+                        kv[p[0]] = p[1];
+                    }
                 }
             }
             _fileKV = kv;

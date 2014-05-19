@@ -7,6 +7,7 @@ namespace Dnd_4e_Character_Assistant
 {
     static class Program
     {
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -15,7 +16,12 @@ namespace Dnd_4e_Character_Assistant
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.Run(new CharacterView(Settings.WorkingDirectory+file));
+            Application.Run(new CharacterView());
         }
+
+        static string file = "myCleric.txt";
+        //static string file = "Zaine.txt";
+
     }
 }
